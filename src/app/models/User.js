@@ -17,6 +17,10 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
+        pastGroups: {
+            type: mongoose.Schema.Types.ObjectId, 
+            ref: 'Group',
+        }
     },
     {timestamps: true}
 );

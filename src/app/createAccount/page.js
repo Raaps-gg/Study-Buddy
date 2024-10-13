@@ -48,7 +48,7 @@ export default function CreateAccount() {
                 setError("This email is already registered")
             }if(res.status === 200){
                 setError("");
-                router.push("/LogIn");
+                router.push("/Login");
             }
         } catch (error) {
             setError("An error occurred.");
@@ -83,7 +83,7 @@ export default function CreateAccount() {
                     Submit
                 </button>
                 <p>{error && error}</p>
-                <Link href="/LogIn">LogIn</Link>
+                <Link href="/Login">Login</Link>
             </form>
         </div>
       

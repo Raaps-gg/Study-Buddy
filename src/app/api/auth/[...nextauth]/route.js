@@ -48,7 +48,7 @@ export const authOptions = {
       },
     }),
 
-    // GitHub Provider for OAuth login
+    // GitHub Provider for OAuth Login
     GithubProvider({
       clientId: process.env.GITHUB_ID ?? "",
       clientSecret: process.env.GITHUB_SECRET,
