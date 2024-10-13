@@ -8,11 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'y2kblue': '#1493ff',
-        'y2kgreen': '#7fff00',
-        'y2kpink' : '#ff1493',
-        'y2kpurple' : '8a2be2',
-        background:  "#7fff00",
+        background: "var(--background)",
         foreground: "var(--foreground)",
       },
     },
