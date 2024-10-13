@@ -10,7 +10,7 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between">
         {/* Navigation Links */}
         <div>
-          <Link href="/" className="text-white px-4">
+          <Link href="/" className="text-white text-2xl px-4">
             Study-Buddy
           </Link>
           
