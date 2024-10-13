@@ -13,6 +13,7 @@ const CreateGroupForm = () => {
   const [location, setLocation] = useState(''); // New location field
   const [error, setError] = useState(null);
 
+  const Router = useRouter();
   // Handler for submitting the form
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,6 +51,7 @@ const CreateGroupForm = () => {
         setLocation(''); // Reset location field
         setError(null);
         console.log("Group created successfully");
+        Router.push('/');
       } else {
         const errorData = await res.json();
         setError(errorData.error || "Creation failed");
