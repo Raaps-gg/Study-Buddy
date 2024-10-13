@@ -33,7 +33,7 @@ const session = await getServerSession();
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[url('y2kbg.png')]`}
       >
         <SessionProvider session={session}>
           <div>
