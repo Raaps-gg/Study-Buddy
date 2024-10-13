@@ -34,3 +34,6 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+Cursor:
+<a href="https://www.freepik.com/free-vector/pixel-cursors-icons-mouse-hand-arrow-hourglass-vector-illustration_11053923.htm#query=retro%20cursor&position=10&from_view=keyword&track=ais_hybrid&uuid=83bf780b-de64-4857-a448-454e20c0c226">Image by macrovector</a> on Freepik

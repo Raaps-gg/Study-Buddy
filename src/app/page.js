@@ -37,11 +37,3 @@ export default function Home() {
         {groups.length > 0 ? (
           groups.map(group => (
             <GroupCard key={group._id} group={group} />
-          ))
-        ) : (
-          <p>No groups found.</p>
-        )}
-      </div>
-    </div>
-  );
-}
