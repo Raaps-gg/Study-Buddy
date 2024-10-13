@@ -3,28 +3,24 @@ import React from 'react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-const CreateGroupForm = () => {
+const CreateGroup = () => {
   const [groupName, setGroupName] = useState('');
   const [subject, setSubject] = useState('');
   const [description, setDescription] = useState('');
-  const [groupMembers, setGroupMembers] = useState(['']); // Initialize with one input for group members
-  const [contact, setContact] = useState('');
-  const [meetingTime, setMeetingTime] = useState('');
-  const [location, setLocation] = useState(''); // New location field
+  const [contact, setContact] = useState(''); // New contact state
+  const [meetingTime, setMeetingTime] = useState(''); // New meeting time state
+  const [groupMembers, setGroupMembers] = useState(['']); // Initialize with one input
   const [error, setError] = useState(null);
 
-  // Handler for submitting the form
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if all required fields are filled
-    if (!groupName || !subject || groupMembers.some(member => member === '') || !contact || !meetingTime || !location) {
+    if (!groupName || !subject || groupMembers.some(member => member === '')) {
       setError('All fields are required');
       return;
     }
 
     try {
-      // Make a POST request to create a new group
       const res = await fetch("/api/createGroup", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -33,22 +29,20 @@ const CreateGroupForm = () => {
           subject,
           groupMembers,
           description,
-          contact,
-          meetingTime,
-          location, // Include location in the body
+          contact, // Send contact info
+          meetingTime, // Send meeting time
         }),
       });
 
       if (res.ok) {
-        // Reset the form after successful submission
+        // Reset the form
         setGroupName('');
         setSubject('');
         setGroupMembers(['']);
         setDescription('');
-        setContact('');
-        setMeetingTime('');
-        setLocation(''); // Reset location field
-        setError(null);
+        setContact(''); // Reset contact
+        setMeetingTime(''); // Reset meeting time
+        setError(null); 
         console.log("Group created successfully");
       } else {
         const errorData = await res.json();
@@ -60,19 +54,16 @@ const CreateGroupForm = () => {
     }
   };
 
-  // Function to add more group members
   const addMemberField = () => {
     setGroupMembers([...groupMembers, '']);
   };
 
-  // Function to handle input changes for group members
   const handleMemberChange = (index, value) => {
     const updatedMembers = [...groupMembers];
     updatedMembers[index] = value;
     setGroupMembers(updatedMembers);
   };
 
-  // Function to remove a group member field
   const removeMemberField = (index) => {
     const updatedMembers = [...groupMembers];
     updatedMembers.splice(index, 1);
@@ -80,57 +71,51 @@ const CreateGroupForm = () => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md max-w-lg mx-auto mt-10">
-      <h1 className="text-2xl font-bold mb-6">Create a New Group</h1>
-      {error && <p className="text-red-500 mb-4">{error}</p>}
+    <div className="bg-blue-100 p-10 rounded-lg shadow-md max-w-lg mx-auto mt-10 retro-style">
+      <h1 className="text-3xl font-bold text-blue-900 mb-4 text-center">Create a Study Group</h1>
+      {error && <p className="text-red-500 text-center mb-4">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-lg font-medium">Group Name</label>
+          <label htmlFor="groupName" className="block text-lg font-medium text-blue-700">Group Name:</label>
           <input
             type="text"
+            id="groupName"
+            className="w-full p-2 rounded-md border-2 border-blue-400"
             value={groupName}
             onChange={(e) => setGroupName(e.target.value)}
             required
-            className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
 
         <div>
-          <label className="block text-lg font-medium">Subject</label>
+          <label htmlFor="subject" className="block text-lg font-medium text-blue-700">Subject:</label>
           <input
             type="text"
+            id="subject"
+            className="w-full p-2 rounded-md border-2 border-blue-400"
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
             required
-            className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
 
         <div>
-          <label className="block text-lg font-medium">Description</label>
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-        </div>
-
-        <div>
-          <label className="block text-lg font-medium">Group Members</label>
+          <label className="block text-lg font-medium text-blue-700">Group Members:</label>
           {groupMembers.map((member, index) => (
             <div key={index} className="flex space-x-2 mb-2">
               <input
                 type="text"
+                className="w-full p-2 rounded-md border-2 border-blue-400"
+                placeholder={`Member ${index + 1}`}
                 value={member}
                 onChange={(e) => handleMemberChange(index, e.target.value)}
-                placeholder={`Member ${index + 1}`}
-                className="w-full p-2 border border-gray-300 rounded"
+                required
               />
               {groupMembers.length > 1 && (
                 <button
                   type="button"
+                  className="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600"
                   onClick={() => removeMemberField(index)}
-                  className="bg-red-500 text-white px-3 py-2 rounded"
                 >
                   Remove
                 </button>
@@ -140,48 +125,49 @@ const CreateGroupForm = () => {
           <button
             type="button"
             onClick={addMemberField}
-            className="bg-blue-500 text-white px-4 py-2 rounded mt-2"
+            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 mt-2"
           >
             Add Member
           </button>
         </div>
 
         <div>
-          <label className="block text-lg font-medium">Contact</label>
+          <label htmlFor="description" className="block text-lg font-medium text-blue-700">Description:</label>
+          <textarea
+            id="description"
+            className="w-full p-2 rounded-md border-2 border-blue-400"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          ></textarea>
+        </div>
+
+        <div>
+          <label htmlFor="contact" className="block text-lg font-medium text-blue-700">Contact:</label>
           <input
             type="text"
+            id="contact"
+            className="w-full p-2 rounded-md border-2 border-blue-400"
             value={contact}
-            onChange={(e) => setContact(e.target.value)}
+            onChange={(e) => setContact(e.target.value)} // Handle contact input
             required
-            className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
 
         <div>
-          <label className="block text-lg font-medium">Meeting Time</label>
+          <label htmlFor="meetingTime" className="block text-lg font-medium text-blue-700">Meeting Time:</label>
           <input
             type="text"
+            id="meetingTime"
+            className="w-full p-2 rounded-md border-2 border-blue-400"
             value={meetingTime}
-            onChange={(e) => setMeetingTime(e.target.value)}
+            onChange={(e) => setMeetingTime(e.target.value)} // Handle meeting time input
             required
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-        </div>
-
-        <div>
-          <label className="block text-lg font-medium">Location</label>
-          <input
-            type="text"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            required
-            className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
 
         <button
           type="submit"
-          className="w-full bg-green-600 text-white py-2 px-4 rounded mt-4"
+          className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition"
         >
           Create Group
         </button>
@@ -190,4 +176,4 @@ const CreateGroupForm = () => {
   );
 };
 
-export default CreateGroupForm;
+export default CreateGroup;

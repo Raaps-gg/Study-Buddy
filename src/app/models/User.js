@@ -17,11 +17,10 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-        groupsYoureIn: [{ // This stores an array of ObjectIds referencing Group documents
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Group', // Reference the Group model
+        groupsYoureIn: {
+            type: [String],
             required: false,
-        }],
+        },
     },
     {timestamps: true}
 );

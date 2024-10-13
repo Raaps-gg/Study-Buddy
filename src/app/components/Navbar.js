@@ -1,52 +1,49 @@
 "use client";
-import Link from 'next/link';
-import { useSession, signOut } from 'next-auth/react'; // Assuming you are using NextAuth.js
+import React from "react";
+import Link from "next/link";
+import { signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
-  const { data: session } = useSession(); // Check if the user is logged in
-
+  const { data: session } = useSession();
   return (
-    <nav className="bg-gray-800 p-4">
-      <div className="container mx-auto flex justify-between">
-        {/* Navigation Links */}
+    <div className="bg-gradient-to-b from-blue-500 to-blue-900 shadow-lg p-6">
+      <ul className="flex justify-between items-center text-white">
         <div>
-          <Link href="/" className="text-white px-4">
-            Study-Buddy
+          <Link href="/">
+            <li className="cursor-pointer font-semibold text-lg">Study-Buddy</li>
           </Link>
-          
         </div>
-
-        {/* Conditionally Render "Create Group" if User is Logged In */}
-        <div className="flex items-center space-x-4">
-          {session && (
+        <div className="flex gap-10 items-center">
+          <Link href="/dashBoard">
+            <li className="cursor-pointer font-semibold text-lg hover:text-gray-200 transition">Dashboard</li>
+          </Link>
+          {!session ? (
             <>
-              <Link href="/createGroup" className="text-white px-4">
-                Create Group
+              <Link href="/LogIn">
+                <li className="cursor-pointer font-semibold text-lg hover:text-gray-200 transition">Login</li>
               </Link>
-              <Link href="/dashBoard" className="text-white px-4">
-                DashBoard
+              <Link href="/createAccount">
+                <li className="cursor-pointer font-semibold text-lg hover:text-gray-200 transition">Register</li>
               </Link>
-
-              <button onClick={signOut} className="text-white bg-red-500 px-4 py-2 rounded">
-                Sign Out
-              </button>
             </>
-          )}
-
-          {!session && (
+          ) : (
             <>
-              <Link href="/LogIn" className="text-white px-4">
-                Login
-              </Link>
-              <Link href="/createAccount" className="text-white px-4">
-                Register
-              </Link>
-              
+              <span>{session.user?.email}</span>
+              <li>
+                <button
+                  onClick={() => {
+                    signOut();
+                  }}
+                  className="bg-gray-700 hover:bg-gray-600 text-white py-2 px-5 rounded-full transition-transform transform hover:scale-105"
+                >
+                  Logout
+                </button>
+              </li>
             </>
           )}
         </div>
-      </div>
-    </nav>
+      </ul>
+    </div>
   );
 };
 
