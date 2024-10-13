@@ -20,6 +20,12 @@ const groupSchema = new Schema(
     description: {
       type: String,
     },
+    Contact: {
+      type: String,
+    },
+    MeetingTime: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
