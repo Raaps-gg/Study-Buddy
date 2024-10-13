@@ -1,7 +1,10 @@
+// jsconfig.json
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/models/*": ["src/app/models/*"],
+      "@/utils/*": ["src/app/utils/*"]
     }
   }
 }
