@@ -26,7 +26,7 @@ const GroupCard = ({ group, userEmail }) => {
   
     return (
       <div className="border p-4 rounded-lg shadow-lg bg-white">
-        <h2 className="text-xl font-bold mb-2">{group.groupName}</h2>
+        <h2 className="text-xl font-bold mb-1">{group.groupName}</h2>
         <p className="text-gray-700">Subject: {group.subject}</p>
         <p className="text-gray-500">Members: {group.groupMembers.join(", ")}</p>
         <p className="text-gray-600">Description: {group.description}</p>
