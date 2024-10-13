@@ -19,12 +19,19 @@ const groupSchema = new Schema(
     },
     description: {
       type: String,
+      required: true,
     },
-    Contact: {
+    contact: { 
       type: String,
+      required: true,
     },
-    MeetingTime: {
+    meetingTime: { 
       type: String,
+      required: true,
+    },
+    location: { // Added location field
+      type: String,
+      required: true,
     },
   },
   { timestamps: true }
