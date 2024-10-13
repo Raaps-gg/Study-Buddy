@@ -1,7 +1,7 @@
 const GroupCard = ({ group, userEmail }) => {
     const handleJoinGroup = async () => {
       try {
-        const res = await fetch(`/api/groups/join`, {
+        const res = await fetch(`/api/joinGroup`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -32,6 +32,7 @@ const GroupCard = ({ group, userEmail }) => {
         <p className="text-gray-600">Description: {group.description}</p>
         <p className="text-gray-600">Contact: {group.contact}</p> {/* Display contact */}
         <p className="text-gray-600">Meeting Time: {group.meetingTime}</p> {/* Display meeting time */}
+        <p className="text-gray-600">Location: {group.location}</p> {/* Display meeting time */}
         <button
           onClick={handleJoinGroup}
           className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
