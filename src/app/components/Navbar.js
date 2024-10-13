@@ -19,7 +19,7 @@ const Navbar = () => {
           </Link>
           {!session ? (
             <>
-              <Link href="/LogIn">
+              <Link href="/Login">
                 <li className="cursor-pointer font-semibold text-lg hover:text-gray-200 transition">Login</li>
               </Link>
               <Link href="/createAccount">
@@ -28,7 +28,10 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <span>{session.user?.email}</span>
+              <span>{session.user?.name}</span>
+              <Link href="/createGroup">
+                <li className="cursor-pointer font-semibold text-lg hover:text-gray-200 transition">Create Group</li>
+              </Link>
               <li>
                 <button
                   onClick={() => {

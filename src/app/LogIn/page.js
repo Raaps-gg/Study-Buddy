@@ -39,7 +39,7 @@ export default function Login() {
           // If there's an error, display the error message
           setError(`Login failed: ${res.error}`);
         } else {
-          // Clear errors and navigate to the dashboard on successful login
+          // Clear errors and navigate to the dashboard on successful Login
           setError("");
           router.replace("/dashBoard");  // Ensure the path is exactly "/dashboard"
         }
